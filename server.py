@@ -9,7 +9,7 @@ class UDPServerProtocol(object):
         self.transport = transport
 
     def datagram_received(self, data, addr):
-        message = data.decode()
+        # message = data.decode()
         # print('Received %r from %s' % (message, addr))
         print('{}:{}'.format(data, addr))
         print('start_of_frame:{}'.format(data[0]))
