@@ -10,7 +10,12 @@ class UDPServerProtocol(object):
 
     def datagram_received(self, data, addr):
         message = data.decode()
-        print('Received %r from %s' % (message, addr))
+        # print('Received %r from %s' % (message, addr))
+        print('{}:{}'.format(data, addr))
+        print('start_of_frame:{}'.format(data[0]))
+        print('length:{}'.format(data[1:3]))
+        print('protocol_id:{}'.format(data[3]))
+        print('tag:{}'.format(data[4]))
 
 
 loop = asyncio.get_event_loop()
