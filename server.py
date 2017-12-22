@@ -19,6 +19,17 @@ class UDPServerProtocol(object):
                                              int(data[1:3].hex(), 16)))
             print('<protocol_id>: {!r}'.format(data[3:4]))
             print('<tag>: {!r} : {:#010b}'.format(data[4:5], data[4]))
+            # if bit 0-3 of <tag> it is 0000, <Identification> is IMEI
+            print('<Identification>:', end=' ')
+            print('{}'.format(hex(data[5])), end='')
+            print('{}'.format(hex(data[6])), end='')
+            print('{}'.format(hex(data[7])), end='')
+            print('{}'.format(hex(data[8])), end='')
+            print('{}'.format(hex(data[9])), end='')
+            print('{}'.format(hex(data[10])), end='')
+            print('{}'.format(hex(data[11])), end='')
+            print('{}'.format(hex(data[12])), end=' ')
+            print('<Identification>: {!r} = {!r}'.format(data[5:13], data[5:13].hex()))
             print()
         else:
             print('keep alive:{}'.format(data))
