@@ -10,13 +10,17 @@ class UDPServerProtocol(object):
 
     def datagram_received(self, data, addr):
         # message = data.decode()
-        print('[Length:{}]:{}:{}'.format(len(data), data, addr))
-        if 126 == data[0]:  # character 0x7E
-            print('start_of_frame:{}'.format(data[0]))
+        if 126 is data[0]:  # character b'\x7e'
+            print('[Length:{}]:{}:{}'.format(len(data), data, addr))
+            print('<start_of_frame>: {!r}'.format(data[0]))
             # print('length:{!r} = {}{}'.format(data[1:3], data[1], data[2]))
-            print('length:{!r} = {}'.format(data[1:3], int(data[1:3])))
+            # print('length:{!r} = {}'.format(data[1:3], int(data[1:3])))
+            print('<length>:{!r}= {}'.format(data[1:3],
+                                            int(data[1:3].hex(), 16)))
+            print()
         else:
             print('keep alive:{}'.format(data))
+            print()
         # print('Received %r from %s' % (message, addr))
         # print('{}:{}'.format(data, addr))
         # print('length:{}'.format(data[1:3]))
