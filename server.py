@@ -16,7 +16,9 @@ class UDPServerProtocol(object):
             # print('length:{!r} = {}{}'.format(data[1:3], data[1], data[2]))
             # print('length:{!r} = {}'.format(data[1:3], int(data[1:3])))
             print('<length>:{!r}= {}'.format(data[1:3],
-                                            int(data[1:3].hex(), 16)))
+                                             int(data[1:3].hex(), 16)))
+            print('<protocol_id>: {!r}'.format(data[3:4]))
+            print('<tag>: {!r} : {:#010b}'.format(data[4:5], data[4]))
             print()
         else:
             print('keep alive:{}'.format(data))
